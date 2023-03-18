@@ -1,0 +1,13 @@
+
+<div class="projects-container">
+    <h2>Fictions</h2>
+    <div class="projects-grid">
+        {% for book in collections.books %}
+            <div class="book-card">
+                <a href="{{book.data.link}}" target="_blank">
+                  <image src="{{book.data.image}}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,23 @@
+
+<div class="projects-container">
+    <h2>Short stories</h2>
+    <p>
+    This is a collection of disjoint stories, usually only a chapter's long.
+    </p>
+    <p>
+    Some day, one of them might receive the grace of me and be converted into a real novel.
+    </p>
+    <p>
+    For now, though, they are only ideas.
+    </p>
+    <br />
+    <div class="projects-grid">
+        {% for book in collections.shorts %}
+            <div class="book-card">
+                <a href="{{book.data.link}}" target="_blank">
+                  <image src="{{book.data.image}}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
