@@ -1,0 +1,32 @@
+{% extends "layouts/base.njk" %}
+
+{% set book = collections.books | matchBook(tags[0]) %}
+{% set chapters = collections[ tags[0] ] %}
+{% set prev = chapters | prev(num) %}
+{% set next = chapters | next(num) %}
+
+{% block content %}
+
+    <div class="book-title">
+      <h1><a href="/book/{{ book.data.chapters }}">{{ book.data.title }}</a></h1>
+    </div>
+
+    <div class="book-nav">
+        {% if prev %}
+           <a href="{{ prev.url }}">≪ {{ prev.data.title }}</a>
+        {% endif %}
+
+        {% if next %}
+        &nbsp;§&nbsp; 
+        {% endif %}
+
+        {% if next %}
+           <a href="{{ next.url }}">{{ next.data.title }} ≫</a>
+        {% endif %}
+    </div>
+
+    <div class="chapter">
+        <h2>{{title}}</h2>
+        {{ content | safe }}
+    </div>
+{% endblock %}

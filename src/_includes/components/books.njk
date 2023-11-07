@@ -4,8 +4,11 @@
     <div class="projects-grid">
         {% for book in collections.books %}
             <div class="book-card">
-                <a href="{{book.data.link}}" target="_blank">
+                <a href="/book/{{book.data.chapters}}">
                   <image src="{{book.data.image}}">
+                </a>
+                <a href="{{book.data.link}}" target="_blank">
+                Read on [RR]
                 </a>
             </div>
         {% endfor %}

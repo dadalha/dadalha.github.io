@@ -445,3 +445,70 @@ hr {
 .project-layout .pt-btn {
     margin: 10px 0;
 }
+
+.book-toc {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.book-synopsis {
+    margin: 2em;
+    text-align: left;
+    width: 100%;
+}
+
+.book-nav {
+    text-align: center;
+}
+
+.chapter {
+    text-align: justify;
+    font-family: Atkinson Hyperlegible,sans-serif;
+    font-size: 1.25em;
+}
+
+.chapter h2 {
+    margin-bottom: 2em;
+}
+
+.chapter p {
+    margin-bottom: 1em;
+}
+
+.chapter hr {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.chapter pre {
+    white-space: pre-wrap;
+    margin-bottom: 0.75em;
+}
+
+.chapter pre > code {
+    padding: 1em;
+}
+
+.chapter code {
+    display: block;
+    font-family: consolas,monospace;
+    font-size: 0.9em;
+}
+
+.light .chapter code {
+    color: #c7254e;
+    background-color: #f9f2f4;
+}
+
+.chapter code {
+    color: #fd1c55;
+    background-color: #000000;
+}
+
+.chapter p > code,
+.chapter p > code+code {
+    margin-bottom: 0.75em;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+}

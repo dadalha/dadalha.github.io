@@ -1,5 +1,5 @@
 ---
-layout: layouts/project.njk
+layout: layouts/base.njk
 title: The Empire of Ink
 description: |
     In a world where all your properties are tattooed on your skin, Ink is a scarce resource, a symbol and a source of power.
@@ -14,6 +14,7 @@ description: |
 image: "/assets/EoI.png"
 link:  "https://www.royalroad.com/fiction/71032/the-empire-of-ink"
 date: 2023-11-01
+chapters: empire-of-ink
 ---
 
 arst
