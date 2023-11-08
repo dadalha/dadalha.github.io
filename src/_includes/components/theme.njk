@@ -1,0 +1,19 @@
+<div
+  x-init="
+  if (selectedTheme == null) {
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    selectedTheme = prefersDark ? 'dark' : 'light';
+  }
+  "
+>
+  <select x-model="selectedTheme">
+    <template x-for="theme in themes" :key="theme">
+      <option 
+        :value="theme" 
+        x-text="theme" 
+        :selected="selectedTheme == theme"
+      >
+      </option>
+    </template>
+  </select>
+</div>

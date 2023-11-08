@@ -10,23 +10,43 @@
     <div class="book-title">
       <h1><a href="/book/{{ book.data.chapters }}">{{ book.data.title }}</a></h1>
     </div>
+    
+    {% include "components/booknav.njk" %}
 
-    <div class="book-nav">
-        {% if prev %}
-           <a href="{{ prev.url }}">≪ {{ prev.data.title }}</a>
-        {% endif %}
+    <div class="chapter" 
+      x-data="{ 
+        {{ book.data.chapters | var }}: $persist({{ num }}),
+        {{ book.data.chapters | var }}Title: $persist('{{ context() | numbered }}'),
+        {{ book.data.chapters | var }}Url: $persist('{{ page.url }}'),
+      }"
+      x-init="if ({{ num }} > {{ book.data.chapters | var }} || {{ book.data.chapters | var }} == null) {
+        {{ book.data.chapters | var }} = {{ num }};
+        {{ book.data.chapters | var }}Title = '{{ context() | numbered }}';
+        {{ book.data.chapters | var }}Url = '{{ page.url }}';
+      }" 
+    >
+        <div x-show="{{ num }} < {{ book.data.chapters | var }}" class="backtracked">
+            <p>You seem to have backtracked.</p>
+            <p>
+                <a :href="{{ book.data.chapters | var }}Url">
+                    Go to your last read: <span x-text="{{ book.data.chapters | var }}Title"></span>
+                </a>
+            </p>
+            <p>
+                <a 
+                    class="clickable"
+                    x-on:click="{{ book.data.chapters | var }} = {{ num }}"
+                >
+                    Set this as last read
+                </a>
+            </p>
+        </div>
 
-        {% if next %}
-        &nbsp;§&nbsp; 
-        {% endif %}
-
-        {% if next %}
-           <a href="{{ next.url }}">{{ next.data.title }} ≫</a>
-        {% endif %}
-    </div>
-
-    <div class="chapter">
-        <h2>{{title}}</h2>
+        <h2>
+          {{ context() | numbered }} 
+        </h2>
         {{ content | safe }}
     </div>
+		
+    {% include "components/booknav.njk" %}
 {% endblock %}

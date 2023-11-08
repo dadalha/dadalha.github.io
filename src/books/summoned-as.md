@@ -1,18 +1,18 @@
 ---
 layout: layouts/project.njk
-title: Summoned as [Error #46]
-description: |
-    Join Mark in his fight against a God and change the game's destiny!
-    
-    Delve into a slow-paced story focused on the progression of the main party and the development of the world. Mark himself will be narrating his life inside the game, and to a much lesser extend outside. Guild building, economy, and strategy are the central pieces of the novel. 
-    
-    Mark is not overpowered, he will have to build his own power through action-packed battles, trials, traumas, love, and death. Accompany him, the healer and the strategist, an agent of chaos, in the adventure of his life. 
-    
-    Without further preamble, I will let Mark take the mic.
+title: 'Summoned as [Error #46]'
 image: "/assets/Summoned.png"
 link: "https://www.royalroad.com/fiction/76308/summoned-as-error-46"
 date: 2024-11-02
 chapters: summoned-as-error-46
 ---
 
-arst
+In a multiverse where the System bestows its extraordinary gifts upon the chosen few, Darian is trapped in a mundane realm, deprived of magic, stats, and classes. He's an ordinary soul in an extraordinary cosmos.
+
+But destiny is a fickle mistress, and one fateful day, Darian is summoned from his ordinary life and thrust into a world blessed by the System. A world where the rules of summoning are hazy and the boundaries between experimentation and power are blurred.
+
+What happens when the summoners dare cross the gray zone of summoning and seek to create a super-human? Brace yourself for an epic showdown as Darian takes on the System itself! Or does he? For he is now an acknowledged error; he is [Error #46].
+
+What powers will he unlock, and what classes will he master on his path to greatness? Explore Darian's boundless potential as he transcends the very limits of what the System originally could do.
+
+

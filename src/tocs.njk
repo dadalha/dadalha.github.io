@@ -9,28 +9,41 @@ permalink: /book/{{ tag }}/
 {% set book = collections.books | matchBook(tag) %}
 {% set chapters = collections[ tag ] %}
 
-<div class="hero-container">
-  <h1>{{ book.data.title }}</h1>
+<h1>{{ book.data.title }}</h1>
 
+<div class="book-header">
+  <div class="book-image">
+    <image src="{{book.data.image}}">
+  </div>
   <div class="book-synopsis">
       {{ book.content | safe }}
   </div>
+</div>
 
-  <div class="book-toc">
-    {% for chapter in chapters | sortedChapters %}
-      <div style="order: {{ chapter.data.num }}">
-          <a href="{{ chapter.url }}">
-              {% if not chapter.data.noNumbering %}
-                {% if chapter.data.fullNumbering %}
-                    Chapter {{ chapter.data.num }}: 
-                {% else %}
-                    {{ chapter.data.num }}. 
-                {% endif %}
-              {% endif %}
-
-              {{ chapter.data.title }}
-          </a>
-      </div>
-    {% endfor %}
-  </div>
+<div 
+  class="book-toc"
+  x-data="{
+    {{ tag | var }}: $persist(null),
+    {{ tag | var }}Unread: $persist(true)
+  }"
+>
+  <h2>Chapters:</h2>
+  <p class="text-right">
+      <input 
+          type="checkbox" id="unread" name="unread" 
+          x-model="{{ tag | var }}Unread"
+          :checked="{{ tag | var }}Unread"
+      > 
+      <label for="unread">Show only unread</label>
+  </p>
+  
+  {% for chapter in chapters | sortedChapters %}
+    <div
+        style="order: {{ chapter.data.num }}"
+        x-show="!{{ tag | var }}Unread || {{ chapter.data.num }} >= {{ tag | var }}"
+    >
+        <a href="{{ chapter.url }}">{{ chapter | numbered }}</a>
+        <span x-show="{{ chapter.data.num }} == {{ tag | var }}">(last read)</span>
+    </div>
+  {% endfor %}
 </div>

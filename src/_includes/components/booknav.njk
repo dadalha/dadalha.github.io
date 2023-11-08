@@ -1,0 +1,14 @@
+<div class="book-nav">
+    {% if prev %}
+       <a href="{{ prev.url }}">≪ {{ prev | numbered }}</a>
+    {% endif %}
+
+    {% if next and prev %}
+    &nbsp;§&nbsp; 
+    {% endif %}
+
+    {% if next %}
+       <a href="{{ next.url }}">{{ next | numbered }} ≫</a>
+    {% endif %}
+</div>
+

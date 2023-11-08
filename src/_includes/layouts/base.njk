@@ -14,14 +14,26 @@
 		/>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible%7CUbuntu%7CUbuntu+Condensed%7CRoboto:300,400,500,600,700%7CMerriweather:300,400,500,600,700" media="all">
 		<link rel="stylesheet" href="/css/global.css" />
+
+		<!-- Alpine Plugins -->
+		<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+		 
+		<!-- Alpine Core -->
+		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 		<title>Dadalha Writes</title>
 	</head>
-	<body>
+	<body
+		x-data="{ selectedTheme: $persist(null), themes: [ 'dark', 'light' ] }"
+		:class="selectedTheme"
+	>
 		<div>
 			{% include "components/navbar.njk" %}
-				{% block content %} 
-					{{ content | safe }}
-				{% endblock %}
+				<div class="main">
+					{% block content %} 
+						{{ content | safe }}
+					{% endblock %}
+				</div>
 			{% include "components/footer.njk" %}
 		</div>
 	</body>
