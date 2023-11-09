@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: Atkinson Hyperlegible,sans-serif;
     font-size: 16px;
     line-height: 1.5;
     width: 900px;
@@ -467,6 +467,10 @@ hr {
     margin: 10px 0;
 }
 
+.book-cats {
+    text-align: center;
+}
+
 .book-header {
     display: flex;
     flex-direction: row;
@@ -475,12 +479,16 @@ hr {
 }
 
 .book-image {
+    flex: 1 1 0;
     margin-top: 0em;
+}
+
+.book-image img {
     width: 100%;
 }
 
-.book-image > img {
-    width: 100%;
+.chapters {
+    margin-top: 1em;
 }
 
 .book-toc {
@@ -488,6 +496,10 @@ hr {
     flex-direction: column;
     width: 100%;
     margin-bottom: 2em;
+}
+
+.book-toc.reverse {
+    flex-direction: column-reverse;
 }
 
 .book-toc > div {
@@ -506,6 +518,7 @@ body.light .book-toc > div {
 }
 
 .book-synopsis {
+    flex: 3 1 0;
     margin: 2em;
     margin-top: 0em;
     text-align: left;
@@ -536,6 +549,7 @@ body.light .book-toc > div {
 .backtracked {
     margin: 2em 10em;
     padding: 1em;
+    text-align: center;
 }
 
 .light .backtracked {
@@ -598,3 +612,143 @@ body.light .book-toc > div {
 .text-right {
     text-align: right;
 }
+
+button,
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 10px red;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #34495e;
+  background-image: none;
+  cursor: pointer;
+  font-family: Atkinson Hyperlegible,sans-serif;
+  font-size: 1em;
+}
+.light button,
+.light select {
+  background-color: #e7e7e7;
+  color: #1D1E20;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  width: 10em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+.light .select::after {
+  background-color: #e7e7e7;
+  color: #1D1E20;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+
+.open-reader-settings {
+    float: right;
+    margin-left: 2em;
+}
+
+.close-reader-settings {
+    position: absolute;
+    right: 0;
+    margin-right: 2em;
+}
+
+.overlay-reader-settings {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.2);
+}
+
+.reader-settings {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 2em;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 70%; /* Need a specific value to work */
+}
+
+.reader-settings > .row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    gap: 1em;
+}
+
+.row div {
+    flex: 1 1 0;
+}
+
+.light .reader-settings {
+    color: #c7254e;
+    background-color: #f9f2f4;
+}
+
+.reader-settings {
+    color: #fd1c55;
+    background-color: #000000;
+}
+
+.reader-settings {
+    margin-bottom: 0.75em;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+}
+
+.width-100 { width: 100%; margin: 0 auto; }
+.width-90 { width: 90%; margin: 0 auto; }
+.width-80 { width: 80%; margin: 0 auto; }
+.width-70 { width: 70%; margin: 0 auto; }
+.width-60 { width: 60%; margin: 0 auto; }
+.width-50 { width: 50%; margin: 0 auto; }
+
+.size-10 { font-size: 10px; }
+.size-11 { font-size: 11px; }
+.size-12 { font-size: 12px; }
+.size-13 { font-size: 13px; }
+.size-14 { font-size: 14px; }
+.size-15 { font-size: 15px; }
+.size-16 { font-size: 16px; }
+.size-17 { font-size: 17px; }
+.size-18 { font-size: 18px; }
+.size-19 { font-size: 19px; }
+.size-20 { font-size: 20px; }
+.size-21 { font-size: 21px; }
+.size-22 { font-size: 22px; }
+.size-23 { font-size: 23px; }
+.size-24 { font-size: 24px; }
+.size-25 { font-size: 25px; }

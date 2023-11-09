@@ -5,6 +5,13 @@ image: "/assets/pawns.png"
 link: "https://www.royalroad.com/fiction/40580/pawns-of-god"
 date: 2023-11-03
 chapters: pawns-of-god
+webs:
+  - name: RoyalRoad
+    link: "https://www.royalroad.com/fiction/40580/pawns-of-god"
+categories:
+  - LitRPG
+  - Progression
+  - VRMMO 
 ---
 
 Join Mark in his fight against a God and change the game's destiny!

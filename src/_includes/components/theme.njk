@@ -5,8 +5,9 @@
     selectedTheme = prefersDark ? 'dark' : 'light';
   }
   "
+  class="select"
 >
-  <select x-model="selectedTheme">
+  <select x-model="selectedTheme" class="minimal">
     <template x-for="theme in themes" :key="theme">
       <option 
         :value="theme" 

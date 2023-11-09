@@ -4,12 +4,27 @@
     <div class="projects-grid">
         {% for book in collections.books %}
             <div class="book-card">
+                <div class="book-cats">
+                  {% for cat in book.data.categories %}
+                    <span>[{{ cat }}]</span>
+                  {% endfor %}
+                </div>
+
                 <a href="/book/{{book.data.chapters}}">
                   <image src="{{book.data.image}}">
                 </a>
-                <a href="{{book.data.link}}" target="_blank">
-                Read on [RR]
-                </a>
+                <div>
+                  <a href="/book/{{book.data.chapters}}">
+                  &gt; Read here
+                  </a>
+                  {% for web in book.data.webs %}
+                    <p>
+                      <a href="{{ web.link }}" target="_blank">
+                        &gt; Read on {{ web.name }}
+                      </a>
+                    </p>
+                  {% endfor %}
+                </div>
             </div>
         {% endfor %}
     </div>

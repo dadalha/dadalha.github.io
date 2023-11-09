@@ -14,9 +14,22 @@
     <div class="projects-grid">
         {% for book in collections.shorts %}
             <div class="book-card">
-                <a href="{{book.data.link}}" target="_blank">
-                  <image src="{{book.data.image}}">
-                </a>
+                <div class="book-cats">
+                  {% for cat in book.data.categories %}
+                    <span>[{{ cat }}]</span>
+                  {% endfor %}
+                </div>
+
+                <image src="{{book.data.image}}">
+                <div>
+                  {% for web in book.data.webs %}
+                    <p>
+                      <a href="{{ web.link }}" target="_blank">
+                        &gt; Read on {{ web.name }}
+                      </a>
+                    </p>
+                  {% endfor %}
+                </div>
             </div>
         {% endfor %}
     </div>

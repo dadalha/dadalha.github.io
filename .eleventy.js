@@ -65,7 +65,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("var", function (name) {
     const snakeToCamel = (str) =>
-      str.toLowerCase().replace(/([-_][a-z])/g, (group) =>
+      str.toLowerCase().replace(/([-_][a-z|0-9])/g, (group) =>
         group
           .toUpperCase()
           .replace("-", "")

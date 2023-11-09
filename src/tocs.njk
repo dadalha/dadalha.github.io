@@ -13,22 +13,65 @@ permalink: /book/{{ tag }}/
 
 <div class="book-header">
   <div class="book-image">
-    <image src="{{book.data.image}}">
+    <div>
+      <image src="{{book.data.image}}">
+    </div>
+    <div>
+      {% for web in book.data.webs %}
+        <p>
+          <a href="{{ web.link }}" target="_blank">
+            &gt; Read on {{ web.name }}
+          </a>
+        </p>
+      {% endfor %}
+    </div>
   </div>
-  <div class="book-synopsis">
-      {{ book.content | safe }}
+  <div class="book-synopsis" x-data="{ open: false }">
+        <div x-data="{ maxLength: 200, fullText: '', slicedText: '' }"
+            x-init="fullText = $el.firstElementChild.textContent.trim(); slicedText = fullText.slice(0, maxLength) + '...'" 
+            x-show="!open"
+        >
+            <div x-text="slicedText" x-transition>
+              {{ book.content | safe }}
+            </div>
+            <button
+              @click="open = ! open"
+              x-text="open ? 'Show less' : 'Show more'"
+            ></button>
+        </div>
+        <div x-data="{ maxLength: 200, fullText: '', slicedText: '' }"
+            x-show="open"
+        >
+            <div>
+              {{ book.content | safe }}
+            </div>
+            <button
+              @click="open = ! open"
+              x-text="open ? 'Show less' : 'Show more'"
+            ></button>
+        </div>
   </div>
 </div>
 
 <div 
-  class="book-toc"
   x-data="{
     {{ tag | var }}: $persist(null),
-    {{ tag | var }}Unread: $persist(true)
+    {{ tag | var }}Unread: $persist(true),
+    {{ tag | var }}OrderNew: $persist(false)
   }"
+  class="chapters"
 >
   <h2>Chapters:</h2>
   <p class="text-right">
+      <input 
+          type="checkbox" id="order" name="order" 
+          x-model="{{ tag | var }}OrderNew"
+          :checked="{{ tag | var }}OrderNew"
+      > 
+      <label for="order">Newer first</label>
+      
+      &nbsp;§&nbsp; 
+
       <input 
           type="checkbox" id="unread" name="unread" 
           x-model="{{ tag | var }}Unread"
@@ -37,13 +80,18 @@ permalink: /book/{{ tag }}/
       <label for="unread">Show only unread</label>
   </p>
   
-  {% for chapter in chapters | sortedChapters %}
-    <div
-        style="order: {{ chapter.data.num }}"
-        x-show="!{{ tag | var }}Unread || {{ chapter.data.num }} >= {{ tag | var }}"
-    >
-        <a href="{{ chapter.url }}">{{ chapter | numbered }}</a>
-        <span x-show="{{ chapter.data.num }} == {{ tag | var }}">(last read)</span>
-    </div>
-  {% endfor %}
+  <div 
+    class="book-toc"
+    :class="{ reverse: {{ tag | var }}OrderNew }"
+  >
+    {% for chapter in chapters | sortedChapters %}
+      <div
+          style="order: {{ chapter.data.num }}"
+          x-show="!{{ tag | var }}Unread || {{ chapter.data.num }} >= {{ tag | var }}"
+      >
+          <a href="{{ chapter.url }}">{{ chapter | numbered }}</a>
+          <span x-show="{{ chapter.data.num }} == {{ tag | var }}">(last read)</span>
+      </div>
+    {% endfor %}
+  </div>
 </div>

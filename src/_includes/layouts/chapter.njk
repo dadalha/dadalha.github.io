@@ -19,33 +19,140 @@
         {{ book.data.chapters | var }}Title: $persist('{{ context() | numbered }}'),
         {{ book.data.chapters | var }}Url: $persist('{{ page.url }}'),
       }"
-      x-init="if ({{ num }} > {{ book.data.chapters | var }} || {{ book.data.chapters | var }} == null) {
-        {{ book.data.chapters | var }} = {{ num }};
-        {{ book.data.chapters | var }}Title = '{{ context() | numbered }}';
-        {{ book.data.chapters | var }}Url = '{{ page.url }}';
+      x-init="if ({{ num }} == {{ book.data.chapters | var }} + 1 || {{ book.data.chapters | var }} == null) {
+        setTimeout(function() {
+          {{ book.data.chapters | var }} = {{ num }};
+          {{ book.data.chapters | var }}Title = '{{ context() | numbered }}';
+          {{ book.data.chapters | var }}Url = '{{ page.url }}';
+        }, 60000);
       }" 
     >
         <div x-show="{{ num }} < {{ book.data.chapters | var }}" class="backtracked">
             <p>You seem to have backtracked.</p>
             <p>
                 <a :href="{{ book.data.chapters | var }}Url">
-                    Go to your last read: <span x-text="{{ book.data.chapters | var }}Title"></span>
+                    <button x-text="{{ book.data.chapters | var }}Title"></button>
                 </a>
+                or 
+                <button
+                    class="clickable"
+                    x-on:click="
+                      {{ book.data.chapters | var }} = {{ num }};
+                      {{ book.data.chapters | var }}Title = '{{ context() | numbered }}';
+                      {{ book.data.chapters | var }}Url = '{{ page.url }}';
+                    "
+                >
+                    Set progress here
+                </button>
             </p>
+        </div>
+        
+        <div x-show="{{ book.data.chapters | var }} != null && {{ num }} > {{ book.data.chapters | var }} + 1" class="backtracked">
+            <p>You seem to have skipped some chapters.</p>
             <p>
-                <a 
+                <a :href="{{ book.data.chapters | var }}Url">
+                    <button x-text="{{ book.data.chapters | var }}Title"></button>
+                </a>
+                or 
+                <button
                     class="clickable"
                     x-on:click="{{ book.data.chapters | var }} = {{ num }}"
                 >
-                    Set this as last read
-                </a>
+                    Set progress here
+                </button>
             </p>
         </div>
 
         <h2>
           {{ context() | numbered }} 
         </h2>
-        {{ content | safe }}
+
+        <div
+          x-data="{ 
+            readerWidth: $persist(100),
+            readerFont: $persist('atkinson'),
+            readerSize: $persist(null),
+            open: false
+          }"
+          :class="{
+            {% for w in [100, 90, 80, 70, 60, 50] %}
+              'width-{{ w }}': readerWidth == {{ w }},
+            {% endfor %}
+            'reader-atkinson': readerFont == 'atkinson',
+            'reader-serif': readerFont == 'serif',
+            {% for w in [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] %}
+              'size-{{ w }}': readerSize == {{ w }},
+            {% endfor %}
+          }"
+        >
+          <div class="overlay-reader-settings" x-show="open" x-on:click="open = !open">
+          </div>
+
+          <i class="fa-solid fa-gear open-reader-settings" x-on:click="open = !open"></i>
+          <div class="reader-settings" x-show="open">
+            <i class="fa-solid fa-close close-reader-settings" x-on:click="open = !open"></i>
+            <div class="row">
+              <div>
+                Reader width: 
+              </div>
+              <div
+                class="select"
+              >
+                <select x-model="readerWidth" class="minimal">
+                  {% for w in [100, 90, 80, 70, 60, 50] %}
+                    <option 
+                      :value="{{ w }}" 
+                      :selected="readerWidth == {{ w }}"
+                    >
+                      {{ w }}&percnt;
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                Font family: 
+              </div>
+              <div
+                class="select"
+              >
+                <select x-model="readerFont" class="minimal">
+                  {% for f in [{ k: "atkinson", v: "Atkinson Hyperlegible" }, { k: "serif", v: "Sans Serif" } ] %}
+                    <option 
+                      value="{{ f.k }}" 
+                      :selected="readerFont == '{{ f.k }}'"
+                    >
+                      {{ f.v }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                Font size: 
+              </div>
+              <div
+                class="select"
+              >
+                <select x-model="readerSize" class="minimal">
+                    <option value="Default">Default</option>
+                  {% for w in [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] %}
+                    <option 
+                      value="{{ w }}" 
+                      :selected="readerSize == {{ w }}"
+                    >
+                      {{ w }}px
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {{ content | safe }}
+        </div>
     </div>
 		
     {% include "components/booknav.njk" %}

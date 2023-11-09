@@ -5,6 +5,13 @@ image: "/assets/Summoned.png"
 link: "https://www.royalroad.com/fiction/76308/summoned-as-error-46"
 date: 2024-11-02
 chapters: summoned-as-error-46
+webs:
+  - name: RoyalRoad
+    link: "https://www.royalroad.com/fiction/76308/summoned-as-error-46"
+categories:
+  - LitRPG
+  - Strong Lead
+  - Multiverse
 ---
 
 In a multiverse where the System bestows its extraordinary gifts upon the chosen few, Darian is trapped in a mundane realm, deprived of magic, stats, and classes. He's an ordinary soul in an extraordinary cosmos.
