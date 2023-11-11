@@ -71,10 +71,10 @@ jobs:
       - name: checkcommit
         id: checkcommit
         run: |
-          if [[ "${{ github.event.head_commit.message }}" =~ "^chapter: .*" ]]
+          if [[ "${{ github.event.head_commit.message }}" =~ ^chapter: ]]
           then
             echo "match=true" >> $GITHUB_OUTPUT
-            echo "msg=$(echo "${{ github.event.head_commit.message }}" | sed "%s/chapter: //g")" >> $GITHUB_OUTPUT
+            echo "msg=$(echo "${{ github.event.head_commit.message }}" | sed "s/chapter: //g")" >> $GITHUB_OUTPUT
           fi
 
       - if: steps.checkcommit.outputs.match == 'true'
