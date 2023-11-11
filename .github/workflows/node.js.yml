@@ -74,6 +74,6 @@ jobs:
           password: ${{ secrets.REDDIT_PASSWORD }}
           app-id: ${{ secrets.REDDIT_APP_ID }}
           app-secret: ${{ secrets.REDDIT_APP_SECRET }}
-          title: "${{ github.event.push.commits[0].message }}"
+          title: "${{ github.event.head_commit.message }}"
           url: "https://dadalha.work"
           subreddit: dadalha
