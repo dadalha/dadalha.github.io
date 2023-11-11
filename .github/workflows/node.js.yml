@@ -78,6 +78,15 @@ jobs:
           fi
 
       - if: steps.checkcommit.outputs.match == 'true'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - if: steps.checkcommit.outputs.match == 'true'
+        id: geturl
+        run: echo "url=$(scripts/get_url)" >> $GITHUB_OUTPUT
+
+      - if: steps.checkcommit.outputs.match == 'true'
         uses: bluwy/release-for-reddit-action@v1
         with:
           username: ${{ secrets.REDDIT_USERNAME }}
@@ -85,5 +94,5 @@ jobs:
           app-id: ${{ secrets.REDDIT_APP_ID }}
           app-secret: ${{ secrets.REDDIT_APP_SECRET }}
           title: "${{ steps.checkcommit.outputs.msg }}"
-          url: "https://dadalha.work"
+          url: "${{ steps.geturl.outputs.url }}"
           subreddit: dadalha

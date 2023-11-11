@@ -1,0 +1,15 @@
+#!/bin/bash
+
+for f in $(git diff --name-only HEAD HEAD~1)
+do
+  if [[ ! "$f" =~ ^src/books ]]
+  then
+    continue
+  fi
+
+  if URL=$(echo "$f" | sed "s;src;https://dadalha.work;g" | sed "s;\.md;/;g")
+  then
+    echo "$URL"
+    break 
+  fi
+done
