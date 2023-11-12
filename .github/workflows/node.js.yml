@@ -107,7 +107,9 @@ jobs:
           if [[ "${{ github.event.head_commit.message }}" =~ twitter: ]]
           then
             echo "match=true" >> $GITHUB_OUTPUT
-            echo "msg=$(echo "${{ github.event.head_commit.message }}" | sed -nr 's/.*twitter:\s+?(.*):twitter/\1/p')" >> $GITHUB_OUTPUT
+            echo 'msg<<EOF' >> $GITHUB_OUTPUT
+            echo "$(echo "${{ github.event.head_commit.message }}" | sed -znr 's/.*twitter:\s+?(.*):twitter/\1/p')" >> $GITHUB_OUTPUT
+            echo 'EOF' >> $GITHUB_OUTPUT
           fi
 
       - if: steps.checkcommit.outputs.match == 'true'
@@ -120,12 +122,10 @@ jobs:
         run: echo "url=$(scripts/get_url)" >> $GITHUB_OUTPUT
 
       - if: steps.checkcommit.outputs.match == 'true'
-        uses: bluwy/release-for-reddit-action@v1
+        uses: nearform-actions/github-action-notify-twitter@master
         with:
-          username: ${{ secrets.REDDIT_USERNAME }}
-          password: ${{ secrets.REDDIT_PASSWORD }}
-          app-id: ${{ secrets.REDDIT_APP_ID }}
-          app-secret: ${{ secrets.REDDIT_APP_SECRET }}
-          title: "${{ steps.checkcommit.outputs.msg }}"
-          url: "${{ steps.geturl.outputs.url }}"
-          subreddit: dadalha
+          message: "${{ steps.checkcommit.outputs.msg }} Check it at ${{ steps.geturl.outputs.url }}"
+          twitter-app-key: ${{ secrets.TWITTER_APP_KEY }}
+          twitter-app-secret: ${{ secrets.TWITTER_APP_SECRET }}
+          twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
