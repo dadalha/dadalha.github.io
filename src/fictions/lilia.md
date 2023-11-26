@@ -3,7 +3,7 @@ layout: layouts/book.njk
 title: "Lilia: Daughter of Time"
 image: "/assets/Lilia.png"
 date: 2023-11-04
-chapters: pawns-of-god
+chapters: lilia 
 webs:
   - name: Drafy 
     link: "https://drafyapp.com/read/656291c3b9a4a59dc4e945d5-lilia-daughter-of-time"
