@@ -1,5 +1,5 @@
 ---
-layout: layouts/project.njk
+layout: layouts/book.njk
 title: Pawns of God
 image: "/assets/pawns.png"
 link: "https://www.royalroad.com/fiction/40580/pawns-of-god"

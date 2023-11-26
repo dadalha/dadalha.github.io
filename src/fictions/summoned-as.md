@@ -1,9 +1,9 @@
 ---
-layout: layouts/project.njk
+layout: layouts/book.njk
 title: 'Summoned as [Error #46]'
 image: "/assets/Summoned.png"
 link: "https://www.royalroad.com/fiction/76308/summoned-as-error-46"
-date: 2024-11-02
+date: 2023-11-02
 chapters: summoned-as-error-46
 webs:
   - name: RoyalRoad

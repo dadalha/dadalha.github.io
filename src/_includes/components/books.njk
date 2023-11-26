@@ -10,11 +10,11 @@
                   {% endfor %}
                 </div>
 
-                <a href="/book/{{book.data.chapters}}">
+                <a href="{{book.url}}">
                   <image src="{{book.data.image}}">
                 </a>
                 <div>
-                  <a href="/book/{{book.data.chapters}}">
+                  <a href="{{book.url}}">
                   &gt; Read here
                   </a>
                   {% for web in book.data.webs %}

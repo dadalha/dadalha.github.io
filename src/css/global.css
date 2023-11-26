@@ -586,10 +586,15 @@ body.light .book-toc > div {
     padding: 1em;
 }
 
-.chapter code {
-    display: block;
+p > code,
+pre > code {
     font-family: consolas,monospace;
     font-size: 0.9em;
+}
+
+p > code + code,
+pre > code {
+    display: block;
 }
 
 .light .chapter code {

@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/book.njk
 title: The Empire of Ink
 image: "/assets/EoI.png"
 link:  "https://www.royalroad.com/fiction/71032/the-empire-of-ink"

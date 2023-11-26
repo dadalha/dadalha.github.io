@@ -124,7 +124,10 @@ jobs:
       - if: steps.checkcommit.outputs.match == 'true'
         uses: nearform-actions/github-action-notify-twitter@master
         with:
-          message: "${{ steps.checkcommit.outputs.msg }} Check it at ${{ steps.geturl.outputs.url }}"
+          message: |
+            ${{ steps.checkcommit.outputs.msg }}
+
+            Check it at ${{ steps.geturl.outputs.url }}"
           twitter-app-key: ${{ secrets.TWITTER_APP_KEY }}
           twitter-app-secret: ${{ secrets.TWITTER_APP_SECRET }}
           twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}

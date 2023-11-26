@@ -4,7 +4,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/css");
 
   eleventyConfig.addCollection("books", (collection) => {
-    return collection.getFilteredByGlob("src/books/*.md");
+    return collection.getFilteredByGlob("src/fictions/*.md");
   });
 
   eleventyConfig.addCollection("shorts", (collection) => {
