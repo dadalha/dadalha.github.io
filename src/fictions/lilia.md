@@ -1,7 +1,7 @@
 ---
 layout: layouts/book.njk
 title: "Lilia: Daughter of Time"
-image: "/assets/lilia.png"
+image: "/assets/Lilia.png"
 date: 2023-11-04
 chapters: pawns-of-god
 webs:
